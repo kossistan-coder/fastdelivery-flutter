@@ -24,6 +24,7 @@ class _FoodCartState extends State<FoodCart> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: kredsale,
+        foregroundColor: kwhite,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

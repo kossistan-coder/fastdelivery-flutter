@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:iconly/iconly.dart';
+import 'package:page_transition/page_transition.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -20,11 +21,19 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final images = [
+    "assets/food6.jpeg",
+    "assets/food5.jpeg",
+    "assets/food4.jpeg",
+    "assets/food9.jpeg",
+  ];
+
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: kredsale,
         centerTitle: false,
@@ -245,7 +254,7 @@ class _HomeState extends State<Home> {
                 return CustomCard(
                   note: 2.5,
                   available: true,
-                  image: "assets/food6.jpeg",
+                  image: images[index],
                   title1: "Burger beef",
                   title2: "250 Frcfa",
                   followers: "20",
@@ -254,13 +263,12 @@ class _HomeState extends State<Home> {
                   network: false,
                   onclick: () {
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ProductDetails(
-                          image: "assets/food6.jpeg",
-                        ),
-                      ),
-                    );
+                        context,
+                        PageTransition(
+                            child: ProductDetails(
+                              image: images[index],
+                            ),
+                            type: PageTransitionType.rightToLeft));
                   },
                 );
               },

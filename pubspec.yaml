@@ -38,13 +38,16 @@ dependencies:
   bloc: ^8.0.0
   flutter_bloc: ^8.0.0
   equatable: ^2.0.5
-  google_fonts: ^3.0.0
+  google_fonts: ^4.0.4
   http: ^0.13.6
   shared_preferences: ^2.2.0
   flutter_spinkit: ^5.2.0
   dotted_border: ^2.0.0+3
   iconly: ^1.0.1
   bloc_test: ^9.1.5
+  hooks_riverpod: ^2.3.6
+  intl_phone_number_input: ^0.7.2
+  page_transition: ^2.1.0
 
 dev_dependencies:
   flutter_test:

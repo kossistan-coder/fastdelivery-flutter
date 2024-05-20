@@ -1,3 +1,4 @@
+import 'package:fastdelivery/presentation/screens/product_details.dart';
 import 'package:fastdelivery/presentation/widgets/components/custom_buttom.dart';
 import 'package:fastdelivery/presentation/widgets/components/custom_card.dart';
 import 'package:fastdelivery/presentation/widgets/components/header.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:iconly/iconly.dart';
+import 'package:page_transition/page_transition.dart';
 
 class Shop extends StatefulWidget {
   const Shop({super.key});
@@ -25,6 +27,7 @@ class _ShopState extends State<Shop> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: kredsale,
+        foregroundColor: kwhite,
         leading: IconButton(
           onPressed: () {},
           icon: Icon(
@@ -133,7 +136,15 @@ class _ShopState extends State<Shop> {
                   width: 0,
                   padding: 2,
                   network: false,
-                  onclick: () {},
+                  onclick: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            child: ProductDetails(
+                              image: "assets/food6.jpeg",
+                            ),
+                            type: PageTransitionType.rightToLeft));
+                  },
                 );
               },
             ),

@@ -1,4 +1,4 @@
-import 'package:fastdelivery/controllers/cubits/tab_cubit.dart';
+import 'package:fastdelivery/presentation/providers/state/tab_state.dart';
 import 'package:fastdelivery/presentation/screens/order/order.dart';
 import 'package:fastdelivery/presentation/screens/settings/profile.dart';
 import 'package:fastdelivery/presentation/screens/tabs/home.dart';
@@ -6,16 +6,17 @@ import 'package:fastdelivery/presentation/screens/tabs/shop.dart';
 import 'package:fastdelivery/presentation/widgets/font/kcolor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:iconly/iconly.dart';
 
-class TabHome extends StatefulWidget {
+class TabHome extends ConsumerStatefulWidget {
   const TabHome({super.key});
 
   @override
-  State<TabHome> createState() => _TabHomeState();
+  _TabHomeState createState() => _TabHomeState();
 }
 
-class _TabHomeState extends State<TabHome> {
+class _TabHomeState extends ConsumerState<TabHome> {
   final tabHomes = const [
     Home(),
     Shop(),
@@ -25,9 +26,9 @@ class _TabHomeState extends State<TabHome> {
 
   @override
   Widget build(BuildContext context) {
-    final tabCubit = BlocProvider.of<TabCubit>(context, listen: true);
+    final tabState = ref.watch(tabProvider);
     return Scaffold(
-      body: tabHomes.elementAt(tabCubit.state.index),
+      body: tabHomes.elementAt(tabState),
       bottomNavigationBar: Container(
           margin: const EdgeInsets.all(10),
           decoration: const BoxDecoration(
@@ -35,11 +36,6 @@ class _TabHomeState extends State<TabHome> {
           ),
           child: Container(
             height: 60,
-            // margin: const EdgeInsets.all(10),
-            // decoration: const BoxDecoration(
-            //   borderRadius: BorderRadius.all(Radius.circular(20)),
-            //   color: kblack,
-            // ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: const [
@@ -70,7 +66,7 @@ class _TabHomeState extends State<TabHome> {
   }
 }
 
-class CustomNavigationItem extends StatelessWidget {
+class CustomNavigationItem extends ConsumerWidget {
   const CustomNavigationItem({
     Key? key,
     required this.index,
@@ -81,31 +77,31 @@ class CustomNavigationItem extends StatelessWidget {
   final String text;
   final IconData icon;
   @override
-  Widget build(
-    BuildContext context,
-  ) {
-    final tabCubit = BlocProvider.of<TabCubit>(context, listen: true);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final tabState = ref.watch(tabProvider);
     return InkWell(
       onTap: () {
-        BlocProvider.of<TabCubit>(context, listen: false).setTabIndex(index);
+        ref.read(tabProvider.notifier).update(
+              (state) => index,
+            );
       },
       child: Container(
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(10)),
-            color: tabCubit.state.index == index ? kwhite : Colors.transparent),
+            color: tabState == index ? kwhite : Colors.transparent),
         child: Column(
           children: [
             Icon(
               icon,
               size: 25,
-              color: tabCubit.state.index == index ? kredsale : kblack,
+              color: tabState == index ? kredsale : kblack,
             ),
             Padding(
               padding: const EdgeInsets.all(4.0),
               child: Text(
                 text,
                 style: TextStyle(
-                  color: tabCubit.state.index == index ? kredsale : kblack,
+                  color: tabState == index ? kredsale : kblack,
                 ),
               ),
             ),

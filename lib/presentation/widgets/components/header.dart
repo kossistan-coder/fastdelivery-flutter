@@ -23,23 +23,29 @@ class UiHeader {
                 padding: EdgeInsets.only(left: 6),
               )
             ],
-            Text(
-              title,
-              style: TextStyle(
-                  color: titleColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: titleSize),
+            SizedBox(
+              width: 350,
+              child: Text(
+                title,
+                style: TextStyle(
+                    color: titleColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: titleSize),
+              ),
             ),
           ],
         ),
         Row(
           children: [
             icon ?? Text(""),
-            Text(
-              subTitle,
-              style: TextStyle(
-                fontSize: subSize,
-                color: subColor,
+            SizedBox(
+              width: 350,
+              child: Text(
+                subTitle,
+                style: TextStyle(
+                  fontSize: subSize,
+                  color: subColor,
+                ),
               ),
             ),
           ],
@@ -48,26 +54,52 @@ class UiHeader {
     );
   }
 
-  static Widget center({
-    required final String subTitle,
-    required final String title,
-  }) {
+  static Widget center(
+      {required final String subTitle,
+      required final String title,
+      Color? titleColor = kwhite,
+      Color? subColor = kwhite,
+      double? titleSize,
+      double? subSize,
+      Icon? icon}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          title,
-          style: TextStyle(
-              color: kblack,
-              fontSize: defaultSize + 10,
-              fontWeight: FontWeight.bold),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (icon != null) ...[
+              Padding(
+                padding: EdgeInsets.only(left: 6),
+              )
+            ],
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: titleColor,
+                fontWeight: FontWeight.bold,
+                fontSize: titleSize,
+              ),
+            ),
+          ],
         ),
-        Text(
-          subTitle,
-          style: TextStyle(
-            fontSize: defaultSize,
-            color: Color.fromARGB(255, 88, 88, 88),
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            icon ?? Text(""),
+            SizedBox(
+              width: 350,
+              child: Text(
+                subTitle,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: subSize,
+                  color: subColor,
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );

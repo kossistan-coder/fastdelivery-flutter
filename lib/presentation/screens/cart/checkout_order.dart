@@ -28,7 +28,7 @@ class _CheckoutOrderState extends State<CheckoutOrder> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             size: 20,
           ),

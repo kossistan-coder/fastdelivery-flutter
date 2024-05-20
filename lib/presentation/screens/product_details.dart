@@ -116,19 +116,25 @@ class _ProductDetailsState extends State<ProductDetails> {
             ),
             Padding(
               padding: EdgeInsets.only(
-                left: screen.width / 4,
-                top: 20,
+                left: screen.width / 7,
+                top: 30,
                 right: 5,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  UiHeader.board(
-                    subTitle: "Assiyéyé , Bar 2face",
-                    title: "Chez burger fast",
-                    titleColor: kblack,
-                    subColor: kgreyShade,
-                    titleSize: 20,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Assiyéyé , Bar 2face",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text("Chez burger fast")
+                    ],
                   ),
                   rectangleLabel(
                     text: "Ouvert",
@@ -221,12 +227,18 @@ class _ProductDetailsState extends State<ProductDetails> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              UiHeader.board(
-                subTitle: "1500 XOF",
-                title: "Prix total",
-                titleColor: kblack,
-                subColor: kgreyShade,
-                titleSize: 18,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "1500XOF",
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text("Prix Total")
+                ],
               ),
               Container(
                 height: 40,

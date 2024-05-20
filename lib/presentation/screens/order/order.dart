@@ -24,6 +24,7 @@ class _OrderState extends State<Order> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: kredsale,
+        foregroundColor: kwhite,
         leading: IconButton(
           onPressed: () {},
           icon: Icon(
